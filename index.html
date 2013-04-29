@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>otxtapp</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+	<h1>Persona Test</h1>
+	<a href="#" id="signin">Signin</a> <a href="#" id="signout">Signout</a>
+	<script src="phonegap.js"></script>
+	<script src="https://login.persona.org/include.js"></script>
+	<script>
+
+		document.addEventListener("deviceready", onDeviceReady, false);
+
+		function onDeviceReady() {
+			alert('DeviceReady');
+		}
+
+		var currentUser = 'sandeep.shetty@gmail.com';
+
+		navigator.id.watch({
+		  loggedInUser: currentUser,
+		  onlogin: function(assertion) {
+			alert('onlogin');
+		  },
+		  onlogout: function() {
+			alert('onlogout');
+		  }
+		});
+
+		var signinLink = document.getElementById('signin');
+		if (signinLink) {
+		  signinLink.onclick = function() { navigator.id.request(); };
+		}
+
+		var signoutLink = document.getElementById('signout');
+		if (signoutLink) {
+		  signoutLink.onclick = function() { navigator.id.logout(); };
+		}
+	</script>
+</body>
+</html>
