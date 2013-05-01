@@ -6,10 +6,20 @@
 </head>
 <body>
 	<h1>Persona Test</h1>
-	<a href="#" id="signin">Signin</a> <a href="#" id="signout">Signout</a>
+	<button id="signin">Signin</button>
+	<button id="signout">Signout</button>
+	<button id="launch" onclick="launchUrl()">Open Popup</button>
+	<button onclick="alert('window.closed after closing popup is ' + w.closed)">window.closed after closing popup</button>
+
 	<script src="phonegap.js"></script>
 	<script src="https://login.persona.org/include.js"></script>
 	<script>
+		var w;
+
+		function launchUrl() {
+			w = window.open("http://google.com/");
+			alert('window.closed after opening popup is ' + w.closed);
+		}
 
 		document.addEventListener("deviceready", onDeviceReady, false);
 
