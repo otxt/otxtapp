@@ -8,17 +8,16 @@
 	<h1>Persona Test</h1>
 	<button id="signin">Signin</button>
 	<button id="signout">Signout</button>
-	<button id="launch" onclick="launchUrl()">Open Popup</button>
-	<button onclick="alert('window.closed after closing popup is ' + w.closed)">window.closed after closing popup</button>
+	<button id="launch" onclick="launchPopup()">Open Popup</button>
 
 	<script src="phonegap.js"></script>
 	<script src="https://login.persona.org/include.js"></script>
 	<script>
 		var w;
 
-		function launchUrl() {
+		function launchPopup() {
 			w = window.open("http://google.com/", '_blank');
-			alert('window.closed after opening popup is ' + w.closed);
+			w.addEventListener('exit', function(event) { alert('Popup Closed'); } );
 		}
 
 		document.addEventListener("deviceready", onDeviceReady, false);
